@@ -1,8 +1,14 @@
+'use client'
 import { LightningBoltIcon, MagicWandIcon, PersonIcon } from "@radix-ui/react-icons";
 import { NormalCardWrapper, NormalCardWrapperProps, UserCard } from "../ui/cards"
 import { Hero } from "../ui/hero"
 import { Navigation } from "../ui/navbar"
 import { About } from "../ui/who-we-are";
+import { BGLife } from "../ui/life-at-23bg";
+import { OurValues } from "../ui/our-values";
+import { OurBenefits } from "../ui/our-benefits";
+import { AwardsSection } from "../ui/awards";
+import { Community } from "../ui/community";
 
 const normalCardInfo: NormalCardWrapperProps = {
   normalCardInfo: [
@@ -34,6 +40,16 @@ const Page = () => {
       <NormalCardWrapper props={normalCardInfo} />
 
       <About />
+
+      <BGLife />
+
+      <OurValues />
+
+      <OurBenefits />
+
+      <AwardsSection />
+
+      <Community />
     </div>
   )
 }

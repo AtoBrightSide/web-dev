@@ -18,6 +18,13 @@ const nextConfig: NextConfig = {
         pathname: '/61702af2e3966e09c4101538/**', 
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '/seed/**', 
+        search: '',
+      },
     ],
   },
 };

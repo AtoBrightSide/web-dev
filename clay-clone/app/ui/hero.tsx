@@ -25,7 +25,8 @@ export const Hero = () => {
             <div className="w-full absolute top-28 p-3 flex flex-col items-center">
                 <div className="text-4xl font-semibold md:text-7xl md:font-bold">Welcome to 23BG</div>
                 <div className="w-2/3 md:w-1/3 md:text-center mt-5 md:text-lg font-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis excepturi laborum hic, optio velit dicta ut cum</div>
-                <Button size={"xl"} className="w-fit font-bold mt-5">See Open Roles </Button>
+                <Button size={"xl"} className="hidden md:block w-fit font-bold mt-5">See Open Roles </Button>
+                <Button size={"lg"} className="block md:hidden w-fit font-bold mt-5">See Open Roles </Button>
             </div>
 
         </div>

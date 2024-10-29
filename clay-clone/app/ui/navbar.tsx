@@ -1,18 +1,64 @@
 'use client'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Cross1Icon, HamburgerMenuIcon, IconJarLogoIcon } from "@radix-ui/react-icons";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
+import { Cross1Icon, CrumpledPaperIcon, FrameIcon, GlobeIcon, HamburgerMenuIcon, HandIcon, IconJarLogoIcon, IdCardIcon, LightningBoltIcon, MixIcon, PaperPlaneIcon, RocketIcon, SketchLogoIcon, TransformIcon } from "@radix-ui/react-icons";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { forwardRef, useState } from "react";
+import { NavbarCard, NavbarCardProps } from "./cards";
 
-const components: { title: string; href: string; description: string }[] = [
-    { title: "Alert Dialog", href: "/docs/primitives/alert-dialog", description: "A modal dialog that interrupts the user with important content and expects a response." },
-    { title: "Hover Card", href: "/docs/primitives/hover-card", description: "For sighted users to preview content available behind a link." },
-    { title: "Progress", href: "/docs/primitives/progress", description: "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar." },
-    { title: "Scroll-area", href: "/docs/primitives/scroll-area", description: "Visually or semantically separates content." },
-    { title: "Tabs", href: "/docs/primitives/tabs", description: "A set of layered sections of content—known as tab panels—that are displayed one at a time." },
-    { title: "Tooltip", href: "/docs/primitives/tooltip", description: "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it." },
+const navItems: NavbarCardProps[] = [
+    {
+        icon: FrameIcon,
+        title: "CRM Enrichment",
+        description: "Connect to and auto update your CRM based on needs",
+    },
+    {
+        icon: TransformIcon,
+        title: "TAM Sourcing",
+        description: "Build targeted lead lists using 10+ sources and AI",
+    },
+    {
+        icon: RocketIcon,
+        title: "Automated Inbound",
+        description: "Connect to your webforms and auto-enrich and score leads",
+    },
+    {
+        icon: IdCardIcon,
+        title: "Automated Outbound",
+        description: "Build, enrich, score and message leads in score",
+    },
+    {
+        icon: PaperPlaneIcon,
+        title: "Intent Data",
+        description: "Build, enrich, score and message leads in score",
+    },
+]
+
+const navFavItems: NavbarCardProps[] = [
+    {
+        icon: HandIcon,
+        title: "Integrations",
+        description: "Access 50+ databases to get the most out of ",
+    },
+    {
+        icon: LightningBoltIcon,
+        title: "Multi-provider",
+        description: "Search multiple providers",
+    },
+    {
+        icon: GlobeIcon,
+        title: "AI Research Agent",
+        description: "Ask our agents to search websites",
+    },
+    {
+        icon: CrumpledPaperIcon,
+        title: "Personalized copywriting",
+        description: "Use our AI email builder",
+    },
 ]
 
 export const Navigation = () => {
@@ -28,7 +74,7 @@ export const Navigation = () => {
     }
 
     return (
-        <nav className="h-20 w-full flex items-center justify-between">
+        <nav className="h-20 w-full bg-white flex items-center justify-between md:sticky md:top-0 md:z-20">
             <div className="flex p-5 items-center gap-2">
                 <Image
                     src={'/artificial-intelligence-7443689.svg'}
@@ -39,6 +85,7 @@ export const Navigation = () => {
                 />
                 <div className="text-black text-2xl font-extrabold">23BG</div>
             </div>
+
             <div className="flex gap-x-2 items-center mx-4 md:hidden">
                 {isAnimating ? (
                     <div className="animate-spin">
@@ -53,6 +100,7 @@ export const Navigation = () => {
                 )}
                 <Button>Sign Up <ArrowRight /></Button>
             </div>
+
             <Accordion type="single" collapsible className={`${isHamburgerActive ? 'block' : 'hidden'} absolute top-20 z-10 bg-white w-full md:hidden transition-all duration-300 ease-in-out transform ${isHamburgerActive ? 'translate-y-0 opacity-100' : 'translate-y-[-100%] opacity-0'}`}>
                 <AccordionItem value="item-1" className="px-2">
                     <AccordionTrigger>Product</AccordionTrigger>
@@ -98,6 +146,58 @@ export const Navigation = () => {
                     <Button className="m-2">Start Building -- for free</Button>
                 </AccordionItem>
             </Accordion>
+
+            <NavigationMenu className="hidden md:block">    
+                <NavigationMenuList>
+                    <NavigationMenuItem>
+                        <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                            <div className="md:w-[800px] lg:w-[900px] h-max flex">
+                                <div className="w-[35%] h-full flex flex-col">
+                                    <div className="w-full h-8 font-mono uppercase bg-slate-100 text-start p-2 border-r border-gray-300">Recurring Workflows</div>
+                                    {navItems.map((item, index) => (
+                                        <NavbarCard key={index} props={item} />
+                                    ))}
+                                </div>
+                                <div className="w-[35%] h-full flex flex-col">
+                                    <div className="w-full h-8 font-mono uppercase bg-slate-100 text-start p-2 border-r border-gray-300">Features</div>
+                                    {navFavItems.map((item, index) => (
+                                        <NavbarCard key={index} props={item} />
+                                    ))}
+                                </div>
+                                <div className="w-[30%] h-full flex flex-col bg-slate-100">
+                                    <div className="w-full h-8 font-mono uppercase text-start p-2">Quick Links</div>
+                                    <div className="max-h-max flex flex-col px-3">
+                                        <div className="p-5 hover:cursor-pointer">Templates</div>
+                                        <div className="p-5 hover:cursor-pointer">Chrome Extension</div>
+                                        <div className="p-5 hover:cursor-pointer">Change Log</div>
+                                        <div className="p-5 hover:cursor-pointer">Security</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </NavigationMenuContent>
+                    </NavigationMenuItem>
+
+                    <NavigationMenuItem>
+                        <NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                            <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2     lg:w-[600px] ">
+
+                            </div>
+                        </NavigationMenuContent>
+                    </NavigationMenuItem>
+
+                    <NavigationMenuItem>
+                        <Link href="/docs" legacyBehavior passHref>
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                Enterprise
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
+
+                </NavigationMenuList>
+            </NavigationMenu>
+
             <div className="hidden md:flex gap-x-2 px-2">
                 <Button variant={"link"} size={"xl"}>Login</Button>
                 <Button size={"xl"}>Sign Up </Button>
@@ -105,3 +205,29 @@ export const Navigation = () => {
         </nav>
     )
 }
+
+const ListItem = forwardRef<
+    React.ElementRef<"a">,
+    React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+    return (
+        <li>
+            <NavigationMenuLink asChild>
+                <a
+                    ref={ref}
+                    className={cn(
+                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                        className
+                    )}
+                    {...props}
+                >
+                    <div className="text-sm font-medium leading-none">{title}</div>
+                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        {children}
+                    </p>
+                </a>
+            </NavigationMenuLink>
+        </li>
+    )
+})
+ListItem.displayName = "ListItem"
