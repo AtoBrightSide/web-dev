@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { CardWithImage, CardWithImageProps } from "./cards";
 
 const cards: CardWithImageProps[] = [
@@ -19,6 +20,22 @@ const cards: CardWithImageProps[] = [
     },
 ];
 export const AwardsSection = () => {
+    const [innerWidth, setInnerWidth] = useState<number>(0);
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setInnerWidth(innerWidth);
+        };
+
+        // Set the initial width
+        setInnerWidth(innerWidth);
+
+        // Update width on resize
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
     return (
         <div className="bg-[#dee9ff] w-full h-full flex flex-col items-center">
             <div className="w-full h-52 flex flex-col items-center text-center p-5 my-14 gap-y-5">
@@ -27,7 +44,7 @@ export const AwardsSection = () => {
             </div>
             <div className="w-full md:w-3/5 md:flex md:justify-center">
                 {cards.map((card, index) => (
-                    <div key={index} className={`${window.innerWidth < 768 ? '' : 'border-r'} border-gray-300 ${index === 1 ? 'shadow-lg' : ''} ${index === cards.length - 1 ? 'border-none' : ''} border-b`}>
+                    <div key={index} className={`${innerWidth < 768 ? '' : 'border-r'} border-gray-300 ${index === 1 ? 'shadow-lg' : ''} ${index === cards.length - 1 ? 'border-none' : ''} border-b`}>
                         <CardWithImage props={card} />
                     </div>
                 ))}

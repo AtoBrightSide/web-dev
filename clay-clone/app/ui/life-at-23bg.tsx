@@ -1,7 +1,7 @@
+'use client'
 import Image from "next/image"
 import { CardWithImageAndDescription, CardWithImageController, CardWithImageAndDescriptionProps } from "./cards"
 import { useEffect, useRef, useState } from "react";
-import { Separator } from "@radix-ui/react-separator";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -268,6 +268,23 @@ export const BGLife = () => {
         Autoplay({ delay: 2000, stopOnInteraction: false })
     )
 
+    const [innerWidth, setInnerWidth] = useState<number>(0);
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setInnerWidth(innerWidth);
+        };
+
+        // Set the initial width
+        setInnerWidth(innerWidth);
+
+        // Update width on resize
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
+
     const chunkedImages = chunkArray(imageElements, 4); // Split images into groups of 4
 
     useEffect(() => {
@@ -298,7 +315,7 @@ export const BGLife = () => {
     }, []);
 
     const scrollAmount = () => {
-        return window.innerWidth > 768 ? window.innerWidth : 410; // adjust the 768 breakpoint as needed
+        return innerWidth > 768 ? innerWidth : 410; // adjust the 768 breakpoint as needed
     }
 
     const scrollLeft = () => {
@@ -345,12 +362,12 @@ export const BGLife = () => {
             <Carousel
                 plugins={[plugin.current]}
                 className="w-full"
-                // opts={{
-                //     slidesToScroll: window.innerWidth > 768 ? 2 : 1,
-                // }}
+                opts={{
+                    slidesToScroll: innerWidth > 768 ? 2 : 1,
+                }}
             >
                 <CarouselContent className="">
-                    {window.innerWidth < 768 ? (
+                    {innerWidth < 768 ? (
                         imageElements.map((image, index) => (
                             <CarouselItem key={index} className="">
                                 <div className="w-full md:w-1/4">

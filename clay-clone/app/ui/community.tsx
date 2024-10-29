@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { UserCardNormal, UserCardNormalProps } from "./cards";
+import { useState, useEffect } from "react";
 
 const cards: UserCardNormalProps[] = [
     {
@@ -28,6 +29,22 @@ const cards: UserCardNormalProps[] = [
     },
 ]
 export const Community = () => {
+    const [innerWidth, setInnerWidth] = useState<number>(0);
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setInnerWidth(innerWidth);
+        };
+
+        // Set the initial width
+        setInnerWidth(innerWidth);
+
+        // Update width on resize
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
     return (
         <div className="bg-[#f5ebfd] w-full h-full flex flex-col items-center">
             <div className="w-full h-52 flex flex-col items-center text-center p-5 my-14 gap-y-5">
@@ -36,7 +53,7 @@ export const Community = () => {
             </div>
             <div className="w-full md:flex md:flex-wrap">
                 {cards.map((card, index) => (
-                    <div key={index} className={`md:w-1/4 ${window.innerWidth < 768 ? '' : 'border-r'} border-gray-300 ${index === 1 ? 'shadow-lg' : ''} ${index === cards.length - 1 ? 'border-none' : ''} border-b md:border-b-0`}>
+                    <div key={index} className={`md:w-1/4 ${innerWidth < 768 ? '' : 'border-r'} border-gray-300 ${index === 1 ? 'shadow-lg' : ''} ${index === cards.length - 1 ? 'border-none' : ''} border-b md:border-b-0`}>
                         <UserCardNormal props={card} />
                         <Separator></Separator>
                     </div>
