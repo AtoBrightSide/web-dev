@@ -68,7 +68,7 @@ export const UserCard = ({ props }: { props: UserCardProps }) => {
     const [isHovered, setIsHovered] = useState<boolean>(false);
     return (
         <div
-            className={`flex h-20 w-full border-gray-300 border-b-[1px] gap-x-2 hover:scale-y-105 hover:shadow-lg transition-all ease-in`}
+            className={`flex h-20 w-full border-gray-300 border-b gap-x-2 hover:scale-y-105 hover:shadow-lg transition-all ease-in`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -188,7 +188,7 @@ export interface CardWithImageProps {
 export const CardWithImage = ({ props }: { props: CardWithImageProps }) => {
     const { title, image } = props
     return (
-        <div className="w-[400px] md:w-96 h-96 md:h-[450px] p-5 md:p-10 bg-white flex flex-col gap-y-4 border-r border-gray-300 hover:bg-slate-300">
+        <div className="w-full p-5 bg-white flex flex-col gap-y-4 border-r border-gray-300 hover:bg-slate-300">
             <div className="w-full h-2/3 flex justify-center">
                 <Image
                     src={image}
@@ -215,7 +215,7 @@ export const UserCardNormal = ({ props }: { props: UserCardNormalProps }) => {
         borderRadius: '100%',
     }
     return (
-        <div className="w-[400px] md:w-[470px] h-96 md:h-[450px] p-5 md:p-10 bg-white flex flex-col gap-y-2 items-center">
+        <div className="w-full h-full p-5 bg-white flex flex-col gap-y-2 items-center">
             <div className="w-full h-min flex justify-center">
                 <Image
                     src={image}
@@ -228,7 +228,26 @@ export const UserCardNormal = ({ props }: { props: UserCardNormalProps }) => {
             </div>
             <div className="text-xl font-bold text-start ">{name}</div>
             <div className="w-3/4 flex flex-wrap justify-center text-center text-sm font-semibold md:text-base whitespace-normal mb-2">{role}</div>
-            <div className="w-3/4 flex flex-wrap justify-center text-center text-sm md:text-base text-[#717989] whitespace-normal">{description}</div>
+            <div className="w-3/4 flex flex-wrap justify-center text-center text-sm md:text-base text-[#717989]">{description}</div>
+        </div>
+    )
+}
+export interface JobPostCardProps {
+    title: string,
+    department: string,
+    location: string,
+    type: string,
+}
+export const JobPostCard = ({ props }: { props: JobPostCardProps }) => {
+    const { title, department, location, type } = props;
+    return (
+        <div className="h-full w-full bg-[#f5f5f5] shadow-lg rounded-md flex flex-col justify-center py-4 px-3 gap-y-3 hover:bg-[#f5f5f581] hover:cursor-pointer">
+            <div className="text-[#002f67] font-semibold">{title}</div>
+            <div className="flex justify-start items-center gap-2 text-xs font-extralight">
+                <div>{department}</div> <div className="h-1 w-1 rounded-full bg-black font-normal"></div>
+                <div className="">{location}</div>
+                <div className="">{type}</div>
+            </div>
         </div>
     )
 }

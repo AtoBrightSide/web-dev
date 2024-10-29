@@ -47,16 +47,15 @@ export const Community = () => {
         };
     }, []);
     return (
-        <div className="bg-[#f5ebfd] w-full h-full flex flex-col items-center">
-            <div className="w-full h-52 flex flex-col items-center text-center p-5 my-14 gap-y-5">
-                <div className="text-3xl md:text-7xl font-semibold md:font-bold md:mb-2">Vibrant, growing community of customers</div>
-                <div className="md:w-1/4">Our customers speak for themselves about the value of Clay.</div>
+        <div className="bg-[#f5ebfd] w-screen h-full flex flex-col items-center">
+            <div className="w-full h-52 md:h-72 flex flex-col items-center text-center p-5 my-14 gap-y-5">
+                <div className="md:w-2/5 text-3xl md:text-7xl font-bold md:mb-2">Vibrant, growing community of customers</div>
+                <div className="w-2/3 md:w-1/4 text-sm md:text-base font-semibold">Our customers speak for themselves about the value of Clay.</div>
             </div>
-            <div className="w-full md:flex md:flex-wrap">
+            <div className="w-full md:flex md:flex-wrap border-b border-gray-300">
                 {cards.map((card, index) => (
-                    <div key={index} className={`md:w-1/4 ${innerWidth < 768 ? '' : 'border-r'} border-gray-300 ${index === 1 ? 'shadow-lg' : ''} ${index === cards.length - 1 ? 'border-none' : ''} border-b md:border-b-0`}>
+                    <div key={index} className={`w-full md:w-1/4 flex justify-center ${innerWidth < 768 ? '' : 'border-r'} border-gray-300 ${index === 1 ? 'shadow-lg' : ''} ${index === cards.length - 1 ? 'border-none' : ''} border-b md:border-b-0`}>
                         <UserCardNormal props={card} />
-                        <Separator></Separator>
                     </div>
                 ))}
             </div>

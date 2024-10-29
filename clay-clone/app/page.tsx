@@ -9,6 +9,7 @@ import { BGLife } from "./ui/life-at-23bg";
 import { OurBenefits } from "./ui/our-benefits";
 import { OurValues } from "./ui/our-values";
 import { About } from "./ui/who-we-are";
+import { Jobs } from "./ui/jobs";
 
 
 const normalCardInfo: NormalCardWrapperProps = {
@@ -33,7 +34,7 @@ const normalCardInfo: NormalCardWrapperProps = {
 
 const Page = () => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="w-screen flex flex-col items-center">
       <Navigation />
 
       <Hero />
@@ -51,6 +52,8 @@ const Page = () => {
       <AwardsSection />
 
       <Community />
+
+      <Jobs />
     </div>
   )
 }

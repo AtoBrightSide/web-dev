@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const Hero = () => {
     return (
-        <div className="w-full h-[450px] md:h-screen relative bg-gradient-to-r from-[#dc7d75] via-[#e88c84] via-[#eb988e] via-[#ed9a90] via-[#fb968f] via-[#e9877c] via-[#e78a80] via-[#d67874] to-[#ca635c]">
+        <div className="w-screen h-[450px] md:h-screen relative bg-gradient-to-r from-[#dc7d75] via-[#e88c84] via-[#eb988e] via-[#ed9a90] via-[#fb968f] via-[#e9877c] via-[#e78a80] via-[#d67874] to-[#ca635c]">
             <Image
                 src={'https://cdn.prod.website-files.com/61477f2c24a826836f969afe/66268d766aa4e3d973574a5d_img-dreamy-land.webp'}
                 width={500}
