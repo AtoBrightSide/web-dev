@@ -271,11 +271,11 @@ export const BGLife = () => {
     const [innerWidth, setInnerWidth] = useState<number>(0);
     useEffect(() => {
         const handleWindowResize = () => {
-            setInnerWidth(innerWidth);
+            setInnerWidth(window.innerWidth);
         };
 
         // Set the initial width
-        setInnerWidth(innerWidth);
+        setInnerWidth(window.innerWidth);
 
         // Update width on resize
         window.addEventListener('resize', handleWindowResize);
@@ -378,7 +378,7 @@ export const BGLife = () => {
                     ) : (
                         chunkedImages.map((chunk, chunkIndex) => (
                             <CarouselItem key={chunkIndex} className="w-1/4 flex justify-around">
-                                {chunk.map((image:any, index:number) => (
+                                {chunk.map((image: any, index: number) => (
                                     <div key={index} className="w-1/4">
                                         {image}
                                     </div>
@@ -386,7 +386,7 @@ export const BGLife = () => {
                             </CarouselItem>
                         ))
                     )}
-                        
+
                 </CarouselContent>
             </Carousel>
         </div>

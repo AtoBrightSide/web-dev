@@ -32,11 +32,12 @@ export const Community = () => {
     const [innerWidth, setInnerWidth] = useState<number>(0);
     useEffect(() => {
         const handleWindowResize = () => {
-            setInnerWidth(innerWidth);
+            console.log("first")
+            setInnerWidth(window.innerWidth);
         };
 
         // Set the initial width
-        setInnerWidth(innerWidth);
+        setInnerWidth(window.innerWidth);
 
         // Update width on resize
         window.addEventListener('resize', handleWindowResize);
