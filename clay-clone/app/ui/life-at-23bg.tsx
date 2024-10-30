@@ -4,6 +4,8 @@ import { CardWithImageAndDescription, CardWithImageController, CardWithImageAndD
 import { useEffect, useRef, useState } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import useIntersectionObserver from "../hooks/intersection-hooks";
+import { useInView } from "react-intersection-observer";
 
 const cards: CardWithImageAndDescriptionProps[] = [
     {
@@ -262,6 +264,7 @@ const chunkArray = (array: any, size: number) => {
 export const BGLife = () => {
     const sliderRef = useRef<HTMLDivElement>(null);
     const imageSliderRef = useRef<HTMLDivElement>(null);
+    const { ref: containerRef, inView: isVisible } = useInView();
 
     const [scrollPosition, setScrollPosition] = useState<number>(0);
     const plugin = useRef(
@@ -288,7 +291,7 @@ export const BGLife = () => {
     const chunkedImages = chunkArray(imageElements, 4); // Split images into groups of 4
 
     useEffect(() => {
-        const handleWheel = (event: WheelEvent) => {
+        const handleWheel = (event: Event) => {
             if (sliderRef.current || imageSliderRef.current) {
                 event.preventDefault();
             }
@@ -296,20 +299,20 @@ export const BGLife = () => {
 
         const slider = sliderRef.current;
         if (slider) {
-            slider.addEventListener('wheel', handleWheel);
+            slider.addEventListener('scroll', handleWheel);
         }
 
         const imageSlider = imageSliderRef.current;
         if (imageSlider) {
-            imageSlider.addEventListener('wheel', handleWheel);
+            imageSlider.addEventListener('scroll', handleWheel);
         }
 
         return () => {
             if (slider) {
-                slider.removeEventListener('wheel', handleWheel);
+                slider.removeEventListener('scroll', handleWheel);
             }
             if (imageSlider) {
-                imageSlider.removeEventListener('wheel', handleWheel);
+                imageSlider.removeEventListener('scroll', handleWheel);
             }
         };
     }, []);
@@ -337,7 +340,7 @@ export const BGLife = () => {
     const prevImage = () => { }
 
     return (
-        <div className="bg-[#e6fce9] w-full h-full flex flex-col items-center">
+        <div className={`bg-[#e6fce9] w-full h-full flex flex-col items-center `}>
             <div className="text-3xl font-semibold mt-16 mb-6">Life at 23BG</div>
             <div className="w-4/5 text-center">We're a team with a huge range of interests—and we love sharing them with one another!</div>
             <CardWithImageController
@@ -348,7 +351,7 @@ export const BGLife = () => {
             />
             <div className="w-screen flex items-center overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar-hide p-2" ref={sliderRef}>
                 {cards.map((card, index) => (
-                    <div key={index} className="w-full">
+                    <div ref={containerRef} key={index} className={`w-full ${isVisible ? 'animate__animated animate__fadeIn' : ''}`}>
                         <CardWithImageAndDescription props={card} />
                     </div>
                 ))}

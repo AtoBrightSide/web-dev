@@ -1,6 +1,8 @@
 import { EyeOpenIcon, LinkNone1Icon, StarIcon, SunIcon } from "@radix-ui/react-icons"
 import { CardWithIcon, CardWithIconProps } from "./cards"
 import { useEffect, useState } from "react";
+import useIntersectionObserver from "../hooks/intersection-hooks";
+import { useInView } from "react-intersection-observer";
 
 const cards: CardWithIconProps[] = [
     {
@@ -23,6 +25,8 @@ const cards: CardWithIconProps[] = [
 ]
 export const OurValues = () => {
     const [innerWidth, setInnerWidth] = useState<number>(0);
+    // const { containerRef, isVisible } = useIntersectionObserver({ threshold: 0.5 });
+    const { ref: containerRef, inView: isVisible } = useInView();
     useEffect(() => {
         const handleWindowResize = () => {
             setInnerWidth(window.innerWidth);
@@ -39,8 +43,8 @@ export const OurValues = () => {
         };
     }, []);
     return (
-        <div className="bg-[#f5ebfd] w-full h-full flex flex-col items-center">
-            <div className="w-full h-52 flex flex-col items-center text-center p-5 my-14 gap-y-5">
+        <div ref={containerRef} className={`bg-[#f5ebfd] w-full h-full flex flex-col items-center ${isVisible ? 'animate__animated animate__fadeIn' : ''}`}>
+            <div className={`w-full h-52 flex flex-col items-center text-center p-5 my-14 gap-y-5`}>
                 <div className="text-3xl md:text-7xl font-semibold md:font-bold md:mb-2">Our Values</div>
                 <div className="md:w-1/4">Kindness and creativity run deep at Clay. We care about bringing out the brightest parts of one another and building world class products.</div>
             </div>

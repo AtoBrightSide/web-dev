@@ -1,6 +1,6 @@
-import { Separator } from "@/components/ui/separator";
 import { UserCardNormal, UserCardNormalProps } from "./cards";
 import { useState, useEffect } from "react";
+import { useInView } from  "react-intersection-observer";
 
 const cards: UserCardNormalProps[] = [
     {
@@ -29,6 +29,7 @@ const cards: UserCardNormalProps[] = [
     },
 ]
 export const Community = () => {
+    const { ref, inView } = useInView();
     const [innerWidth, setInnerWidth] = useState<number>(0);
     useEffect(() => {
         const handleWindowResize = () => {
@@ -47,14 +48,14 @@ export const Community = () => {
         };
     }, []);
     return (
-        <div className="bg-[#f5ebfd] w-screen h-full flex flex-col items-center">
-            <div className="w-full h-52 md:h-72 flex flex-col items-center text-center p-5 my-14 gap-y-5">
+        <div ref={ref} className={`bg-[#f5ebfd] w-screen h-full flex flex-col items-center ${inView ? 'animate__animated animate__fadeIn' : ''}`}>
+            <div className={`"w-full h-52 md:h-72 flex flex-col items-center text-center p-5 my-14 gap-y-5`}>
                 <div className="md:w-2/5 text-3xl md:text-7xl font-bold md:mb-2">Vibrant, growing community of customers</div>
                 <div className="w-2/3 md:w-1/4 text-sm md:text-base font-semibold">Our customers speak for themselves about the value of Clay.</div>
             </div>
-            <div className="w-full md:flex md:flex-wrap border-b border-gray-300">
+            <div className={`w-full md:flex md:flex-wrap border-b border-gray-300`}>
                 {cards.map((card, index) => (
-                    <div key={index} className={`w-full md:w-1/4 flex justify-center ${innerWidth < 768 ? '' : 'border-r'} border-gray-300 ${index === 1 ? 'shadow-lg' : ''} ${index === cards.length - 1 ? 'border-none' : ''} border-b md:border-b-0`}>
+                    <div key={index} className={`w-full md:w-1/4 flex justify-center ${innerWidth < 768 ? '' : 'border-r'} border-gray-300 ${index === 1 ? 'shadow-lg' : ''} ${index === cards.length - 1 ? 'border-none' : ''} border-b md:border-b-0 `}>
                         <UserCardNormal props={card} />
                     </div>
                 ))}

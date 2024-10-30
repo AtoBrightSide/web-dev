@@ -1,6 +1,8 @@
 import { BackpackIcon, BarChartIcon, CookieIcon, EnvelopeClosedIcon, HeartFilledIcon, HomeIcon, Pencil2Icon, TimerIcon } from "@radix-ui/react-icons";
 import { CardWithIconAndDescription, CardWithIconAndDescriptionProps } from "./cards";
 import { useState, useEffect } from "react";
+import useIntersectionObserver from "../hooks/intersection-hooks";
+import { useInView } from "react-intersection-observer";
 
 const cards: CardWithIconAndDescriptionProps[] = [
     {
@@ -46,6 +48,7 @@ const cards: CardWithIconAndDescriptionProps[] = [
 ]
 export const OurBenefits = () => {
     const [innerWidth, setInnerWidth] = useState<number>(0);
+    const { ref: containerRef, inView: isVisible } = useInView();
     useEffect(() => {
         const handleWindowResize = () => {
             setInnerWidth(window.innerWidth);
@@ -62,8 +65,8 @@ export const OurBenefits = () => {
         };
     }, []);
     return (
-        <div className="bg-[#fde097] w-full h-full flex flex-col items-center">
-            <div className="w-full h-52 flex flex-col items-center text-center p-5 my-14 gap-y-5">
+        <div className={`"bg-[#fde097] w-full h-full flex flex-col items-center`}>
+            <div ref={containerRef} className={`"w-full h-52 flex flex-col items-center text-center p-5 my-14 gap-y-5 ${isVisible ? 'animate__animated animate__fadeIn' : ''}`}>
                 <div className="text-3xl md:text-7xl font-semibold md:font-bold md:mb-2">Our Benefits</div>
                 <div className="md:w-1/4">Kindness and creativity run deep at Clay. We care about bringing out the brightest parts of one another and building world class products.</div>
             </div>

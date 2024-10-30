@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { JobPostCard } from "./cards";
 import { FilterButton, getAllLocations } from "./filter-button";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import useIntersectionObserver from "../hooks/intersection-hooks";
+import { useInView } from "react-intersection-observer";
 
 export interface Job {
     title: string;
@@ -227,6 +229,7 @@ const Filters = () => {
 }
 
 export const Jobs = () => {
+    const { ref: containerRef, inView: isVisible } = useInView();
     const [innerWidth, setInnerWidth] = useState<number>(0);
     useEffect(() => {
         const handleWindowResize = () => {
@@ -244,8 +247,8 @@ export const Jobs = () => {
         };
     }, []);
     return (
-        <div className="bg-white w-screen h-full flex flex-col items-center mt-20">
-            <div className="w-4/5 md:w-3/5 h-fit flex flex-col items-center text-center  gap-y-5 md:px-4">
+        <div className={`bg-white w-screen h-full flex flex-col items-center mt-20`}>
+            <div ref={containerRef} className={`w-4/5 md:w-3/5 h-fit flex flex-col items-center text-center  gap-y-5 md:px-4 ${isVisible ? 'animate__animated animate__fadeIn' : ''}`}>
                 <div className="text-3xl md:text-7xl font-semibold md:font-bold md:mb-2">Open Jobs</div>
                 <div className="w-full text-start">Open Positions({totalJobCount})</div>
                 <div className="block md:hidden"><FilterButton /></div>
@@ -256,10 +259,10 @@ export const Jobs = () => {
             </div>
             <div className="w-4/5 md:w-3/5 flex flex-col gap-y-8 md:flex md:flex-wrap md:justify-center">
                 {allDepartments.flatMap((department, depIndex) => (
-                    <div key={depIndex}>
+                    <div key={depIndex} className={``}>
                         <div className="text-sm font-semibold ml-2 mb-1">{department.name}</div>
                         {department.jobs.map((job, jobIndex) => (
-                            <div key={`${depIndex}-${jobIndex}`} className={`w-full h-24 flex justify-center text-sm mb-4 ${innerWidth < 768 ? "" : "border-r"} border-gray-300`} >
+                            <div key={`${depIndex}-${jobIndex}`} className={`w-full h-24 flex justify-center text-sm mb-4 ${innerWidth < 768 ? "" : "border-r"} border-gray-300 `} >
                                 <JobPostCard props={job} />
                             </div>
                         ))}

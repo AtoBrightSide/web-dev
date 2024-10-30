@@ -1,5 +1,7 @@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { UserCard, UserCardHeader, UserCardProps } from "./cards"
+import useIntersectionObserver from "../hooks/intersection-hooks";
+import { useInView } from "react-intersection-observer";
 
 const userInfo: UserCardProps[] = [
     {
@@ -106,12 +108,14 @@ const userInfo: UserCardProps[] = [
 
 
 export const About = () => {
+    // const { containerRef, isVisible } = useIntersectionObserver({ threshold: 0.5 });
+    const { ref: containerRef, inView: isVisible } = useInView();
     const handleClick = () => {
 
     }
     return (
-        <section className="w-full h-[800px] md:h-[1200px] bg-[#dee9ff] flex flex-col items-center justify-between pt-14 ">
-            <div className="h-[10%] flex flex-col items-center gap-y-6">
+        <section className={`w-full h-[800px] md:h-[1200px] bg-[#dee9ff] flex flex-col items-center justify-between pt-14`}>
+            <div ref={containerRef} className={`h-[10%] flex flex-col items-center gap-y-6 ${isVisible ? 'animate__animated animate__fadeIn' : ''}`}>
                 <div className="text-3xl md:text-7xl font-semibold">Who we are</div>
                 <div className="md:w-96 md:text-lg font-medium px-10 md:px-0">We're a kind, creative, and close-knit team. We have quiet egos, growth mindsets, and love tackling interesting problems together.</div>
             </div>
