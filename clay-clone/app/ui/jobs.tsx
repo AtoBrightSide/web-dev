@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { JobPostCard } from "./cards";
 import { FilterButton, getAllLocations } from "./filter-button";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
-import useIntersectionObserver from "../hooks/intersection-hooks";
 import { useInView } from "react-intersection-observer";
 
 export interface Job {

@@ -10,6 +10,7 @@ import { OurBenefits } from "./ui/our-benefits";
 import { OurValues } from "./ui/our-values";
 import { About } from "./ui/who-we-are";
 import { Jobs } from "./ui/jobs";
+import { Footer } from "./ui/footer";
 
 
 const normalCardInfo: NormalCardWrapperProps = {
@@ -54,6 +55,8 @@ const Page = () => {
       <Community />
 
       <Jobs />
+
+      <Footer />
     </div>
   )
 }
