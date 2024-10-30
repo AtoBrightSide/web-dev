@@ -4,7 +4,6 @@ import { CardWithImageAndDescription, CardWithImageController, CardWithImageAndD
 import { useEffect, useRef, useState } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import useIntersectionObserver from "../hooks/intersection-hooks";
 import { useInView } from "react-intersection-observer";
 
 const cards: CardWithImageAndDescriptionProps[] = [

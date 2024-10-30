@@ -5,7 +5,7 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { Cross1Icon, CrumpledPaperIcon, FrameIcon, GlobeIcon, HamburgerMenuIcon, HandIcon, IconJarLogoIcon, IdCardIcon, LightningBoltIcon, MixIcon, PaperPlaneIcon, RocketIcon, SketchLogoIcon, TransformIcon } from "@radix-ui/react-icons";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { forwardRef, useState } from "react";
+import { useState } from "react";
 import { NavbarCard, NavbarCardProps } from "./cards";
 
 const navItems: NavbarCardProps[] = [

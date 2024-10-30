@@ -1,6 +1,5 @@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { UserCard, UserCardHeader, UserCardProps } from "./cards"
-import useIntersectionObserver from "../hooks/intersection-hooks";
 import { useInView } from "react-intersection-observer";
 
 const userInfo: UserCardProps[] = [

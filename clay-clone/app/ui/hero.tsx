@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import 'animate.css';
-import useIntersectionObserver from "../hooks/intersection-hooks";
 import { useInView } from "react-intersection-observer";
 
 export const Hero = () => {

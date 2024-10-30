@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { CardWithImage, CardWithImageProps } from "./cards";
-import useIntersectionObserver from "../hooks/intersection-hooks";
 import { useInView } from "react-intersection-observer";
 
 const cards: CardWithImageProps[] = [

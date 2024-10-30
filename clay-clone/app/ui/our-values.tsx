@@ -1,7 +1,6 @@
 import { EyeOpenIcon, LinkNone1Icon, StarIcon, SunIcon } from "@radix-ui/react-icons"
 import { CardWithIcon, CardWithIconProps } from "./cards"
 import { useEffect, useState } from "react";
-import useIntersectionObserver from "../hooks/intersection-hooks";
 import { useInView } from "react-intersection-observer";
 
 const cards: CardWithIconProps[] = [

@@ -4,7 +4,6 @@ import { ChevronLeftIcon, ChevronRightIcon, FrameIcon, PersonIcon } from "@radix
 import { IconProps } from "@radix-ui/react-icons/dist/types";
 import Image from "next/image";
 import { ForwardRefExoticComponent, RefAttributes, useState } from "react";
-import useIntersectionObserver from "../hooks/intersection-hooks";
 import { useInView } from "react-intersection-observer";
 
 export interface NormalCardProps {
