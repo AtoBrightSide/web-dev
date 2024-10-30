@@ -1,12 +1,10 @@
 'use client'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { Cross1Icon, CrumpledPaperIcon, FrameIcon, GlobeIcon, HamburgerMenuIcon, HandIcon, IconJarLogoIcon, IdCardIcon, LightningBoltIcon, MixIcon, PaperPlaneIcon, RocketIcon, SketchLogoIcon, TransformIcon } from "@radix-ui/react-icons";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { forwardRef, useState } from "react";
 import { NavbarCard, NavbarCardProps } from "./cards";
 
