@@ -17,6 +17,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "23 BG",
   description: "Bugs and Glitches",
+  icons: "/artificial-intelligence-7443689.svg"
 };
 
 export default function RootLayout({
