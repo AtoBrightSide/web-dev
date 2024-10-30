@@ -101,7 +101,7 @@ export const Navigation = () => {
                 <Button>Sign Up <ArrowRight /></Button>
             </div>
 
-            <Accordion type="single" collapsible className={`${isHamburgerActive ? 'block' : 'hidden'} absolute top-20 z-10 bg-white w-full md:hidden transition-all duration-300 ease-in-out transform ${isHamburgerActive ? 'translate-y-0 opacity-100' : 'translate-y-[-100%] opacity-0'}`}>
+            <Accordion type="single" collapsible className={`${isHamburgerActive ? 'block' : 'hidden'} absolute top-20 z-10 bg-white w-full md:hidden transition-all duration-300 ease-in-out transform animate__animated animate__slideInDown`}>
                 <AccordionItem value="item-1" className="px-2">
                     <AccordionTrigger>Product</AccordionTrigger>
                     <AccordionContent>
